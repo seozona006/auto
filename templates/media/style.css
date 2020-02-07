@@ -1,0 +1,18 @@
+#header{background:#fff;padding:10px 0;}
+.bgwhite{background:#fff;}
+.removeshadow{-webkit-box-shadow: 0 1px 6px #fff;box-shadow: 0 1px 6px #fff;}
+#header .avatar{float:left;width:25%;}
+#header .avatar img{border-radius:50%;max-width:60px;max-height:60px;}
+.per-info{float:left;width:75%;}
+.per-info .title-name{font-weight: 900;font-size:18px;}
+.per-info{font-size:12px;}
+.per-info .present{color: #000000;padding-right:10px;}
+.per-info .present i{font-size:8px;font-weight:900;float:right;}
+.per-info .post-info{color:#c4c4c4;}
+#header .follow-us{font-size:14px;line-height:3;overflow: hidden;width: 100%;}
+#header .follow-us a{}
+.time{color:#b3b3b3;font-size:12px;line-height: 0px;margin-top:40px;}
+.card-list{border-radius:8px;}
+.card-list .post-title p{color:#fff;font-size:16px;padding: 0 15px 10px 5px;position:absolute;bottom:0px;margin:0px;letter-spacing:2px;line-height: 1.5;}
+.post-title-list{height: 60px;font-size:16px;line-height:1.5;letter-spacing:2px;display: table-cell;vertical-align: middle;}
+.fo{text-align:center;}

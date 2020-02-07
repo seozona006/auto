@@ -1,0 +1,105 @@
+<h1>Web前端文件处理</h1>
+<p>在项目中，我们经常会有这样的需求，对上传的文件大小进行限制，传统的做法是在服务器端进行大小限制，例如nginx通过client_max_body_size，php.ini中可以通过upload_max_filesize和post_max_size来设置上传的文件大小。这种做法的缺陷很明显，数据上传到服务器之后，再对其进行监测，大大增加了宽带和服务器的压力。何不放在客户端进行检测？</p>
+<p>在IE10及以下的版本，可以通过如下方式检测需要上传文件的大小:</p>
+<pre>
+&lt;input type=&quot;file&quot; onchange=&quot;checksize()&quot;&gt;
+&lt;script&gt;
+function checksize(e){
+	var ev = e || window.event;
+	var uri =  ev.srcElement.value;
+	var img = new Image();
+	img.onload=function(){
+		alert(&quot;文件大小为&quot;+(img.fileSize)/1024+&quot;KB&quot;);
+	}
+	img.src=uri;
+}
+&lt;/script&gt;
+</pre>
+<p>上面的代码的运行原理是把上传的文件模拟成图片，通过其fileSize属性获取其大小，而由于浏览器的安全策略，其几乎只能运行在本地打开此网页的情况。加上微软在IE11上已经废除了fileSize的属性，而现代浏览器厂商为了保护本地操作系统，在用户上传文件的时候，本地资源路径一律采用fakepath，更加阻止了这种方法获取文件大小的可行性。</p>
+<p><img src="https://www.hitoy.org/wp-content/uploads/html5-file-api.jpg" alt="HTML5 File API" /></p>
+<p>在HTML4时代，浏览器几乎是不提供本地文件操作API的，而HTML5给了开发者更大的自由，不仅支持获取上传文件大小，还支持多文件同时上传:</p>
+<pre>
+&lt;input type=&quot;file&quot; multiple=&quot;multiple&quot; onchange=&quot;checkinfo(this)&quot;&gt;
+&lt;script&gt;
+function checkinfo(obj){
+	var len = obj.files.length;
+
+	var text=&quot;&quot;;
+	for (var i =0 ; i &lt; len ; i++){
+			text += &quot;文件:&quot;+obj.files[i].name+&quot; ,大小:&quot;+obj.files[i].size+&quot;字节
+&quot;;
+	}
+	console.log(text);
+}
+&lt;/script&gt;
+</pre>
+<p>在file类型的input中增加multiple属性，即可上传多个文件，而不必通过增加input框的个数来增加上传文件数量的限制。而对于file类型的对象，HTML5增加了一个FileList接口，让访问&lt;input type="file"&gt;元素选中的文件列表成为可能，它还可以应用于用drag和drop API获取拖拽到web页面的文件列表。它有item, length等属性。更加详细的介绍，可以点击这里。</p>
+<p>利用HTML5，不仅可以获取文件大小，还可以进行本地的图片预览:</p>
+<pre>
+&lt;input type=&quot;file&quot; multiple=&quot;multiple&quot; onchange=&quot;checkinfo(this)&quot;&gt;
+&lt;div id=&quot;win&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+function checkinfo(obj){
+	var len = obj.files.length;
+	for (var i =0 ; i &lt; len ; i++){
+			showimg(obj.files[i]);
+	}
+}
+
+function showimg(img){
+	var a = new FileReader();
+	a.readAsDataURL(img);
+	a.onload=function(){
+		var img = new Image();
+		img.src=a.result;
+		document.getElementById('win').appendChild(img);
+	}
+}
+
+&lt;/script&gt;
+</pre>
+<p>这里用到FileReader这个文件API，它可以让web应用异步加载本地的文件或者内容，它用来操作File或者Bob对象，它的详细介绍，可以点击这里。有了FileReader对象，我们就可以完成很多以前不能在前端完成的事情。如，web前端图片大小截取:</p>
+<pre>
+&lt;input type=&quot;file&quot; multiple=&quot;multiple&quot; onchange=&quot;checkinfo(this)&quot;&gt;
+&lt;div id=&quot;win&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+function checkinfo(obj){
+	var len = obj.files.length;
+	for (var i =0 ; i &lt; len ; i++){
+			showimg(obj.files[i]);
+	}
+}
+
+function showimg(img){
+	var a = new FileReader();
+	a.readAsDataURL(img);
+	a.onload=function(){
+		var img = new Image();
+		img.src=a.result;
+		document.getElementById('win').appendChild(img);
+		big2small(a.result);
+	}
+}
+
+function big2small(){
+	var img = document.getElementsByTagName(&quot;img&quot;)[0];
+	var iwidth=img.width;
+	var iheight=img.height;
+	var canv = document.createElement('canvas');
+	var cvx = canv.getContext(&quot;2d&quot;);
+	var x = window.prompt(&quot;请输入起点X坐标&quot;);
+	var y = window.prompt(&quot;请输入起点y坐标&quot;);
+	var wi = window.prompt(&quot;请输入宽度&quot;);
+	var he = window.prompt(&quot;请输入高度&quot;);
+	cvx.drawImage(img,x,y,wi,he,0,0,wi,he);
+	document.body.appendChild(canv);
+}
+&lt;/script&gt;
+</pre>
+<p>HTML5中前端文件处理的File API还为我们提供其它非常多的接口和灵活的运用，如上传进度提示，数据分段等，关于File APi的介绍，可以点击这里。</p>
+<h2>参考资料</h2>
+<ol>
+<li>fileSize property</li>
+<li>Google Group</li>
+<li>FileReader</li>
+</ol>

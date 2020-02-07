@@ -1,0 +1,14 @@
+<h1>给树莓派安装ArchLinux</h1><h2>Arch Linux</h2>
+<p>Our rsync package was shipped with bundled zlib to provide compatibility with the old-style --compress option up to version 3.1.0. Version 3.1.1 was released on 2014-06-22 and is shipped by all major distributions now. </p>
+<h2>Arch Linux - Downloads</h2>
+<p>Arch Linux Downloads Release Info. The image can be burned to a CD, mounted as an ISO file, or be directly written to a USB stick using a utility like dd.It is intended for new installations only; an existing Arch Linux system can always be updated with pacman -Syu. </p>
+<h2>Arch Linux - Wikipedia</h2>
+<p>Arch Linux (/ 蓱藧r t蕛 /) is a Linux distribution for computers based on x86-64 architectures. The Arch Linux repositories contain both libre, and nonfree software, and the default Arch Linux kernel contains nonfree proprietary blobs, hence the distribution is not endorsed by the GNU project. </p>
+<h2>Installation guide - ArchWiki - Arch Linux</h2>
+<p>This document is a guide for installing Arch Linux from the live system booted with the official installation image. Before installing, it would be advised to view the FAQ. </p>
+<h2>ArchWiki - Arch Linux</h2>
+<p>How to search the wiki, find related articles and view the wiki offline. ArchWiki:Contributing The starting point for those willing to contribute to the wiki. Help:Editing Tutorial on editing articles and introduction to wiki text syntax. </p>
+<h2>How to Install Arch Linux in 2020 [Step by Step Guide]</h2>
+<p>Jan 01, 2020 路  Brief: This tutorial shows you how to install Arch Linux in easy to follow steps. Arch Linux is a x86-64 general-purpose Linux distribution which has been popular among the DIY enthusiasts and hardcore Linux users. The default installation covers only a minimal base system and expects the end user ... </p>
+<h2>Arch Linux 32</h2>
+<p>A simple, lightweight distribution for 32-bit CPUs You&#39;ve reached the website for Arch Linux 32, the community maintained continuation of 32-bit support for Arch Linux, a lightweight and flexible Linux庐 distribution that tries to Keep It Simple. </p>
